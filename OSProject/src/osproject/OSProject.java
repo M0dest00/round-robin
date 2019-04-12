@@ -143,10 +143,10 @@ public class OSProject {
             } 
         } 
   
-        System.out.println("name  ctime  wtime"); 
+        System.out.println("name  atime  ctime  wtime"); 
         for (int i = 0; i < p.length; i++) { 
-            System.out.println(" " + p[i] + "    " + comp[i] 
-                               + "    " + w[i]); 
+            System.out.println(" " + p[i] + "     "+ a[i]+"     "+ comp[i] 
+                               + "     " + w[i]); 
   
             res = res + w[i]; 
             resc = resc + comp[i]; 
@@ -161,41 +161,32 @@ public class OSProject {
     public static void main(String[] args) {
         // TODO code application logic here
          // name of the process 
-         Scanner scan;
+        Scanner scan;
         scan = new Scanner(System.in);
         System.out.println("Enter your TimeSlice");
         int q=scan.nextInt();
         System.out.println("Enter the Number of Process");
         int numofprocess=scan.nextInt();
-        String name[] =new String[numofprocess];
-        int arrivaltime[] = new int[numofprocess];
-        int bursttime[] = new int[numofprocess];
-        
-        System.out.println("Enter Process Name");
-        for(int i=0;i<name.length;i++){
-            name[i]=scan.nextLine();
-        }
-        System.out.println("Enter each process arrival time");
-        for(int i=0;i<numofprocess;i++){
-            arrivaltime[i]=scan.nextInt();
-        }
-        System.out.println("Enter each process burst time");
-        for(int i=0;i<numofprocess;i++){
-            bursttime[i]=scan.nextInt();
-        }
-  
-        // arrival for every process 
-        
-        
-  
-        // burst time for every process 
-         
-  
-        // quantum time of each process 
-        
-  
-        // cal the function for output 
+        scan.nextLine();
+        if(numofprocess>=0){
+            String name[] =new String[numofprocess];
+            int arrivaltime[] = new int[numofprocess];
+            int bursttime[] = new int[numofprocess];
+            System.out.println("Enter Process Name");
+            for(int i=0;i<name.length;i++){ 
+                name[i]=scan.nextLine();
+            }
+            for(int i=0;i<numofprocess;i++){
+                System.out.println("Enter the arrival time of process "+name[i]);
+                arrivaltime[i]=scan.nextInt();
+            }
+            for(int i=0;i<numofprocess;i++)
+                {
+                    System.out.println("Enter the burst time of process "+name[i]);
+                    bursttime[i]=scan.nextInt();
+                }
         roundRobin(name, arrivaltime, bursttime, q); 
+        }   
     }
     
 }
