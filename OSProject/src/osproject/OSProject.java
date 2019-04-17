@@ -13,8 +13,7 @@ import java.util.Scanner;
 public class OSProject {
 
     /**
-     * @param pname
-     * @return 
+     * @param args 
      */
      
 //    public static String[] pname (String pname[]){
@@ -65,7 +64,6 @@ public class OSProject {
                     bursttime[i]=scan.nextInt();
                 }
         rr.roundRobin(name, arrivaltime, bursttime, q);
-        
         }   
     }
     

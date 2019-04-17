@@ -19,6 +19,7 @@ public class RRC {
     public int com[];
     public int burst[];
     public int nop;
+    public String gantChart[];
     public void roundRobin(String p[], int a[],int b[], int n) 
     { 
         // result of average times 
@@ -152,15 +153,15 @@ public class RRC {
             } 
         } 
   
-        System.out.println("name of process  arrival time  burst time  compilation time  waiting time"); 
+//        System.out.println("name of process  arrival time  burst time  compilation time  waiting time"); 
         for (int i = 0; i < nop; i++) { 
             this.aTime[i]=a[i];
             this.pName[i]=p[i];
             this.wTime[i]=w[i];
             this.com[i]=comp[i];
             this.burst[i]=b[i];
-            System.out.println(" " + p[i] + "     "+ a[i]+"     "+b[i]+"     "+ comp[i] 
-                               + "     " + w[i]); 
+//            System.out.println(" " + p[i] + "           "+ a[i]+"          "+b[i]+"         "+ comp[i] 
+//                               + "           " + w[i]); 
   
             res = res + w[i]; 
             resc = resc + comp[i]; 
@@ -170,10 +171,11 @@ public class RRC {
         
         this.avgwtime=(float)res / nop;
         this.avgctime=(float)resc/ nop;
-         System.out.println("Average waiting time is "
-                           + (float)res / nop);
-        System.out.println("Average compilation  time is "
-                           + (float)resc / nop); 
-        System.out.println("Sequence is like that " + seq); 
+        this.gantChart=seq.split("->");
+//         System.out.println("Average waiting time is "
+//                           + (float)res / nop);
+//        System.out.println("Average compilation  time is "
+//                           + (float)resc / nop); 
+//        System.out.println("Sequence is like that " + seq); 
     }
 }
