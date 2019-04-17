@@ -13,154 +13,33 @@ import java.util.Scanner;
 public class OSProject {
 
     /**
-     * @param args the command line arguments
+     * @param pname
+     * @return 
      */
-    
-    public static void roundRobin(String p[], int a[],int b[], int n) 
-    { 
-        // result of average times 
-        int res = 0; 
-        int resc = 0; 
+     
+//    public static String[] pname (String pname[]){
+//        return pname;
+//    }
+//    public static int [] arrival(int atime[]){
+//        return atime;
+//    }
+//    public static int[] waiting(int wtime[]){
+//        return wtime;
+//    }
+//    public static int [] compilation(int ctime[]){
+//        return ctime;
+//    }
+//    public static float avgwtime(float awt){
+//        return awt;
+//    }
+//    public static float avgctime(float act){
+//        return act;
+//    }
   
-        // for sequence storage 
-        String seq = new String(); 
-  
-        // copy the burst array and arrival array 
-        // for not effecting the actual array 
-        int res_b[] = new int[b.length]; 
-        int res_a[] = new int[a.length]; 
-  
-        for (int i = 0; i < res_b.length; i++) { 
-            res_b[i] = b[i]; 
-            res_a[i] = a[i]; 
-        } 
-  
-        // critical time of system 
-        int t = 0; 
-  
-        // for store the waiting time 
-        int w[] = new int[p.length]; 
-  
-        // for store the Completion time 
-        int comp[] = new int[p.length]; 
-  
-        while (true) { 
-            boolean flag = true; 
-            for (int i = 0; i < p.length; i++) { 
-  
-                // these condition for if 
-                // arrival is not on zero 
-  
-                // check that if there come before qtime 
-                if (res_a[i] <= t) { 
-                    if (res_a[i] <= n) { 
-                        if (res_b[i] > 0) { 
-                            flag = false; 
-                            if (res_b[i] > n) { 
-  
-                                // make decrease the b time 
-                                t = t + n; 
-                                res_b[i] = res_b[i] - n; 
-                                res_a[i] = res_a[i] + n; 
-                                seq += "->" + p[i]; 
-                            } 
-                            else { 
-  
-                                // for last time 
-                                t = t + res_b[i]; 
-  
-                                // store comp time 
-                                comp[i] = t - a[i]; 
-  
-                                // store wait time 
-                                w[i] = t - b[i] - a[i]; 
-                                res_b[i] = 0; 
-  
-                                // add sequence 
-                                seq += "->" + p[i]; 
-                            } 
-                        } 
-                    } 
-                    else if (res_a[i] > n) { 
-  
-                        // is any have less arrival time 
-                        // the coming process then execute them 
-                        for (int j = 0; j < p.length; j++) { 
-  
-                            // compare 
-                            if (res_a[j] < res_a[i]) { 
-                                if (res_b[j] > 0) { 
-                                    flag = false; 
-                                    if (res_b[j] > n) { 
-                                        t = t + n; 
-                                        res_b[j] = res_b[j] - n; 
-                                        res_a[j] = res_a[j] + n; 
-                                        seq += "->" + p[j]; 
-                                    } 
-                                    else { 
-                                        t = t + res_b[j]; 
-                                        comp[j] = t - a[j]; 
-                                        w[j] = t - b[j] - a[j]; 
-                                        res_b[j] = 0; 
-                                        seq += "->" + p[j]; 
-                                    } 
-                                } 
-                            } 
-                        } 
-  
-                        // now the previous porcess according to 
-                        // ith is process 
-                        if (res_b[i] > 0) { 
-                            flag = false; 
-  
-                            // Check for greaters 
-                            if (res_b[i] > n) { 
-                                t = t + n; 
-                                res_b[i] = res_b[i] - n; 
-                                res_a[i] = res_a[i] + n; 
-                                seq += "->" + p[i]; 
-                            } 
-                            else { 
-                                t = t + res_b[i]; 
-                                comp[i] = t - a[i]; 
-                                w[i] = t - b[i] - a[i]; 
-                                res_b[i] = 0; 
-                                seq += "->" + p[i]; 
-                            } 
-                        } 
-                    } 
-                } 
-  
-                // if no process is come on thse critical 
-                else if (res_a[i] > t) { 
-                    t++; 
-                    i--; 
-                } 
-            } 
-            // for exit the while loop 
-            if (flag) { 
-                break; 
-            } 
-        } 
-  
-        System.out.println("name  atime  ctime  wtime"); 
-        for (int i = 0; i < p.length; i++) { 
-            System.out.println(" " + p[i] + "     "+ a[i]+"     "+ comp[i] 
-                               + "     " + w[i]); 
-  
-            res = res + w[i]; 
-            resc = resc + comp[i]; 
-        } 
-  
-        System.out.println("Average waiting time is "
-                           + (float)res / p.length); 
-        System.out.println("Average compilation  time is "
-                           + (float)resc / p.length); 
-        System.out.println("Sequence is like that " + seq); 
-    }
     public static void main(String[] args) {
         // TODO code application logic here
          // name of the process 
+        RRC rr=new RRC();
         Scanner scan;
         scan = new Scanner(System.in);
         System.out.println("Enter your TimeSlice");
@@ -185,7 +64,8 @@ public class OSProject {
                     System.out.println("Enter the burst time of process "+name[i]);
                     bursttime[i]=scan.nextInt();
                 }
-        roundRobin(name, arrivaltime, bursttime, q); 
+        rr.roundRobin(name, arrivaltime, bursttime, q);
+        
         }   
     }
     
